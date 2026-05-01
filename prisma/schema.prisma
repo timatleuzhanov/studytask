@@ -1,0 +1,246 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  ADMIN
+  TEACHER
+  STUDENT
+}
+
+enum QuizAttemptType {
+  FIRST
+  RETAKE
+}
+
+enum QuestStepType {
+  QUIZ
+  GAME_TASK
+}
+
+model User {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String
+  name         String
+  role         Role
+  starsTotal   Int      @default(0)
+  avatarUrl    String?
+  about        String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  teacherOf   TeacherOnStudent[] @relation("TeacherUsers")
+  studentOf   TeacherOnStudent[] @relation("StudentUsers")
+  groupsCreated Group[] @relation("GroupCreator")
+  groupMembers  GroupMember[]
+
+  quizzesAuthored Quiz[] @relation("QuizAuthor")
+  questsAuthored  Quest[] @relation("QuestAuthor")
+
+  assignmentsAsStudent QuizAssignment[] @relation("AssignmentStudent")
+  assignmentsAsTeacher QuizAssignment[] @relation("AssignmentTeacher")
+
+  messagesSent     ChatMessage[] @relation("MsgFrom")
+  messagesReceived ChatMessage[] @relation("MsgTo")
+
+  visitSessions VisitSession[]
+  starEntries   StarLedger[]
+  gameAttempts  MiniGameAttempt[]
+  questProgress QuestProgress[]
+  miniGameBest  MiniGameBest?
+}
+
+/// Связь преподаватель ↔ ученик (назначение квизов только при наличии связи)
+model TeacherOnStudent {
+  id        String   @id @default(cuid())
+  teacherId String
+  studentId String
+  createdAt DateTime @default(now())
+
+  teacher User @relation("TeacherUsers", fields: [teacherId], references: [id], onDelete: Cascade)
+  student User @relation("StudentUsers", fields: [studentId], references: [id], onDelete: Cascade)
+
+  @@unique([teacherId, studentId])
+  @@index([studentId])
+  @@index([teacherId])
+}
+
+model Group {
+  id          String   @id @default(cuid())
+  name        String
+  creatorId   String
+  createdAt   DateTime @default(now())
+
+  creator User          @relation("GroupCreator", fields: [creatorId], references: [id], onDelete: Cascade)
+  members GroupMember[]
+}
+
+model GroupMember {
+  id        String   @id @default(cuid())
+  groupId   String
+  studentId String
+  joinedAt  DateTime @default(now())
+
+  group   Group @relation(fields: [groupId], references: [id], onDelete: Cascade)
+  student User  @relation(fields: [studentId], references: [id], onDelete: Cascade)
+
+  @@unique([groupId, studentId])
+  @@index([studentId])
+}
+
+/// Вопросы хранятся как JSON: [{ id, text, options[], correctIndex }]
+model Quiz {
+  id          String   @id @default(cuid())
+  title       String
+  description String?
+  /// Максимум звёзд при результате 100
+  maxStars    Int      @default(10)
+  /// Звёзды за диапазон 50–99 (если null — по формуле от maxStars)
+  partialStars Int?
+  questions   Json
+  createdById String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  author       User             @relation("QuizAuthor", fields: [createdById], references: [id], onDelete: Cascade)
+  assignments  QuizAssignment[]
+  questSteps   QuestStep[]
+}
+
+model QuizAssignment {
+  id              String   @id @default(cuid())
+  quizId          String
+  studentId       String
+  assignedById    String
+  createdAt       DateTime @default(now())
+
+  quiz       Quiz @relation(fields: [quizId], references: [id], onDelete: Cascade)
+  student    User @relation("AssignmentStudent", fields: [studentId], references: [id], onDelete: Cascade)
+  assignedBy User @relation("AssignmentTeacher", fields: [assignedById], references: [id], onDelete: Cascade)
+
+  attempts QuizAttempt[]
+
+  @@index([studentId])
+  @@index([assignedById])
+}
+
+model QuizAttempt {
+  id           String          @id @default(cuid())
+  assignmentId String
+  score        Int
+  starsGranted Int             @default(0)
+  attemptType  QuizAttemptType
+  createdAt    DateTime        @default(now())
+
+  assignment QuizAssignment @relation(fields: [assignmentId], references: [id], onDelete: Cascade)
+
+  @@index([assignmentId])
+}
+
+model Quest {
+  id          String   @id @default(cuid())
+  title       String
+  description String?
+  rewardStars Int
+  createdById String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  author User        @relation("QuestAuthor", fields: [createdById], references: [id], onDelete: Cascade)
+  steps  QuestStep[]
+
+  progresses QuestProgress[]
+}
+
+model QuestStep {
+  id        String        @id @default(cuid())
+  questId   String
+  order     Int
+  stepType  QuestStepType
+  quizId    String?
+
+  quest Quest @relation(fields: [questId], references: [id], onDelete: Cascade)
+  quiz  Quiz? @relation(fields: [quizId], references: [id], onDelete: SetNull)
+
+  @@index([questId])
+}
+
+model QuestProgress {
+  id          String   @id @default(cuid())
+  questId     String
+  studentId   String
+  currentStep Int      @default(0)
+  completed   Boolean  @default(false)
+  updatedAt   DateTime @updatedAt
+
+  quest   Quest @relation(fields: [questId], references: [id], onDelete: Cascade)
+  student User  @relation(fields: [studentId], references: [id], onDelete: Cascade)
+
+  @@unique([questId, studentId])
+}
+
+model StarLedger {
+  id        String   @id @default(cuid())
+  userId    String
+  delta     Int
+  reason    String
+  refType   String?
+  refId     String?
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+model MiniGameAttempt {
+  id          String   @id @default(cuid())
+  userId      String
+  scorePoints Int
+  starsEarned Int      @default(0)
+  createdAt   DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, createdAt])
+}
+
+/// Лучший результат в мини-игре (обновляется при новом рекорде)
+model MiniGameBest {
+  userId     String @id
+  bestScore  Int
+  updatedAt  DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model ChatMessage {
+  id        String   @id @default(cuid())
+  fromId    String
+  toId      String
+  body      String
+  createdAt DateTime @default(now())
+
+  from User @relation("MsgFrom", fields: [fromId], references: [id], onDelete: Cascade)
+  to   User @relation("MsgTo", fields: [toId], references: [id], onDelete: Cascade)
+
+  @@index([fromId, toId, createdAt])
+}
+
+model VisitSession {
+  id          String    @id @default(cuid())
+  userId      String
+  startedAt   DateTime  @default(now())
+  endedAt     DateTime?
+  durationSec Int?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, startedAt])
+}

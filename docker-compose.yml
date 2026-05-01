@@ -1,0 +1,15 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: studytask
+      POSTGRES_PASSWORD: studytask
+      POSTGRES_DB: studytask
+    ports:
+      - "5432:5432"
+    volumes:
+      - studytask_pg:/var/lib/postgresql/data
+
+volumes:
+  studytask_pg:

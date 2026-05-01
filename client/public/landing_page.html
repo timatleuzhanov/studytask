@@ -1,0 +1,1884 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>Study Task — Образовательный центр с геймификацией в обучении</title>
+    <meta
+      name="description"
+      content="Study Task — современный образовательный центр с геймификацией обучения. Онлайн уроки, интерактивные квизы, презентации и система наград для учеников 1–11 классов."
+    />
+    <meta
+      name="keywords"
+      content="Study Task, Стади Таск, онлайн школа IT, курсы программирования, обучение Python, Django, React Native, онлайн обучение, IT курсы, геймификация обучения, онлайн уроки, интерактивные квизы"
+    />
+    <meta name="author" content="Study Task Team" />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Open Graph Meta Tags for Social Media -->
+    <meta property="og:title" content="Study Task — Онлайн IT школа" />
+    <meta
+      property="og:description"
+      content="Учись IT с нуля: Python, Django, мобильная разработка, квизы и уроки. Образовательный центр с геймификацией обучения для учеников 1–11 классов."
+    />
+    <meta
+      property="og:image"
+      content="https://study-task.kz/static/images/Study_Task.png"
+    />
+    <meta property="og:url" content="https://study-task.kz/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Study Task" />
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Study Task — Онлайн IT школа" />
+    <meta
+      name="twitter:description"
+      content="Учись IT с нуля: Python, Django, мобильная разработка. Образовательный центр с геймификацией обучения."
+    />
+    <meta
+      name="twitter:image"
+      content="https://study-task.kz/static/images/Study_Task.png"
+    />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="https://study-task.kz/static/st/st.png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="https://study-task.kz/static/st/st.png" />
+
+    <!-- Preconnect to external domains for faster loading -->
+    <link rel="preconnect" href="https://stackpath.bootstrapcdn.com" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+
+    <!-- Critical CSS: Bootstrap (inline for above-the-fold content) -->
+    <link rel="preload" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"></noscript>
+    
+    <!-- Non-critical CSS: Load asynchronously -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
+    
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
+
+    <!-- Font-display optimization for Font Awesome -->
+    <style>
+      @font-face {
+        font-family: "Font Awesome 6 Free";
+        font-style: normal;
+        font-weight: 900;
+        font-display: swap;
+        src: url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/webfonts/fa-solid-900.woff2")
+          format("woff2");
+      }
+      @font-face {
+        font-family: "Font Awesome 6 Brands";
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/webfonts/fa-brands-400.woff2")
+          format("woff2");
+      }
+    </style>
+
+    <link
+      rel="preload"
+      href="https://unpkg.com/aos@2.3.1/dist/aos.css"
+      as="style"
+      onload="
+        this.onload = null;
+        this.rel = 'stylesheet';
+      "
+    />
+    <noscript
+      ><link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"
+    /></noscript>
+
+    <style>
+      :root {
+        --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        --secondary-gradient: linear-gradient(135deg, #ff2626 0%, #f5576c 100%);
+        --success-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        --accent-gradient: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        --dark-gradient: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+        --glass-bg: rgba(255, 255, 255, 0.1);
+        --glass-border: rgba(255, 255, 255, 0.2);
+        --text-primary: #2d3748;
+        --text-secondary: #4a5568;
+        --text-light: #718096;
+        --shadow-light: 0 10px 40px rgba(0, 0, 0, 0.1);
+        --shadow-heavy: 0 20px 60px rgba(0, 0, 0, 0.2);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        line-height: 1.6;
+        color: var(--text-primary);
+        overflow-x: hidden;
+      }
+
+      /* Smooth Scrolling */
+      html {
+        scroll-behavior: smooth;
+      }
+
+      /* Main Images Animation */
+      .main-image {
+        opacity: 0 !important;
+        transform: translateY(30px) !important;
+        transition: all 0.8s ease !important;
+      }
+
+      .main-image.show {
+        opacity: 1 !important;
+        transform: translateY(0) !important;
+      }
+
+      /* Override AOS styles for main images */
+      .main-image[data-aos] {
+        opacity: 0 !important;
+        transform: translateY(30px) !important;
+      }
+
+      .main-image[data-aos].aos-animate {
+        opacity: 1 !important;
+        transform: translateY(0) !important;
+      }
+
+      .main-image-container {
+        margin-bottom: 2rem;
+      }
+
+      /* Coming Soon Overlay */
+      .coming-soon-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(5px);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border-radius: 20px;
+        z-index: 10;
+      }
+
+      .coming-soon-badge {
+        background: var(--secondary-gradient);
+        color: white;
+        padding: 8px 20px;
+        border-radius: 25px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        animation: pulse 2s infinite;
+      }
+
+      .coming-soon-text {
+        color: var(--text-primary);
+        font-size: 1.1rem;
+        font-weight: 600;
+        text-align: center;
+        margin-bottom: 0.5rem;
+      }
+
+      .coming-soon-subtext {
+        color: var(--text-light);
+        font-size: 0.9rem;
+        text-align: center;
+        max-width: 200px;
+      }
+
+      .feature-card.coming-soon {
+        position: relative;
+        opacity: 0.7;
+      }
+
+      .feature-card.coming-soon .feature-icon {
+        opacity: 0.5;
+      }
+
+      .feature-card.coming-soon .feature-title,
+      .feature-card.coming-soon .feature-description {
+        opacity: 0.5;
+      }
+
+      /* Header Styles */
+      .navbar {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        transition: all 0.3s ease;
+        padding: 1rem 0;
+      }
+
+      /* Ensure mobile burger icon is visible */
+      .navbar-light .navbar-toggler {
+        border-color: rgba(0, 0, 0, 0.15);
+      }
+      .navbar-light .navbar-toggler-icon {
+        background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(0,0,0,0.85)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+      }
+
+      .navbar.scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: var(--shadow-light);
+            padding: 0.5rem 0;
+        }
+
+      .navbar-brand {
+        font-family: "Poppins", sans-serif;
+        font-weight: 700;
+        font-size: 1.5rem;
+        background: var(--primary-gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .navbar-brand img {
+        height: 40px;
+        width: auto;
+        display: block;
+      }
+
+      .navbar-nav .nav-link {
+        font-weight: 500;
+        color: var(--text-primary) !important;
+        margin: 0 0.5rem;
+        transition: all 0.3s ease;
+        position: relative;
+      }
+
+      .navbar-nav .nav-link:hover {
+        color: #667eea !important;
+        transform: translateY(-2px);
+      }
+
+      .navbar-nav .nav-link::after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: -5px;
+        left: 50%;
+        background: var(--primary-gradient);
+        transition: all 0.3s ease;
+        transform: translateX(-50%);
+      }
+
+      .navbar-nav .nav-link:hover::after {
+        width: 100%;
+      }
+
+      /* Стили для кнопки "Войти" */
+      .btn-outline-primary:hover {
+        color: white !important;
+        background-color: #007bff;
+        border-color: #007bff;
+      }
+
+      /* Стили для кнопки "Генератор картинок" */
+      .nav-link[href*="ai-image-creator"] {
+        background: var(--accent-gradient) !important;
+        color: white !important;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        border: none !important;
+      }
+
+      .nav-link[href*="ai-image-creator"]:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(67, 233, 123, 0.4);
+        color: white !important;
+      }
+
+      /* Hero Section */
+      .hero-section {
+        background: var(--primary-gradient);
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero-section::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: url('https://study-task.kz/static/animations/hero-background.gif');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        opacity: 0.3;
+        z-index: 1;
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 20;
+        color: white;
+      }
+
+      .hero-images .main-image-container {
+        margin-bottom: 1.5rem;
+      }
+
+      .hero-image-grid {
+        display: flex;
+        gap: 1.2rem;
+        flex-wrap: wrap;
+      }
+
+      .hero-image-grid .image-small {
+        flex: 1 1 calc(50% - 0.6rem);
+      }
+
+      .hero-image-grid img {
+        width: 100%;
+        border-radius: 20px;
+      }
+
+      .hero-title {
+        font-family: "Poppins", sans-serif;
+        font-size: 3.5rem;
+        font-weight: 800;
+        line-height: 1.2;
+        margin-bottom: 1.5rem;
+        text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      }
+
+      .hero-subtitle {
+        font-size: 1.3rem;
+        font-weight: 400;
+        margin-bottom: 2.5rem;
+        opacity: 0.9;
+        line-height: 1.6;
+      }
+
+      .hero-cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1.2rem 2.5rem;
+        background: var(--secondary-gradient);
+        color: white;
+        text-decoration: none;
+        border-radius: 50px;
+        font-weight: 600;
+        font-size: 1.1rem;
+        box-shadow: 0 10px 30px rgba(240, 147, 251, 0.4);
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero-cta::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.2),
+          transparent
+        );
+        transition: left 0.5s;
+      }
+
+      .hero-cta:hover::before {
+        left: 100%;
+      }
+
+      .hero-cta:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 15px 40px rgba(240, 147, 251, 0.6);
+        text-decoration: none;
+        color: white;
+      }
+
+      .hero-stats {
+        display: flex;
+        gap: 3rem;
+        margin-top: 10px;
+        margin-bottom: 15px;
+      }
+
+      .stat-item {
+        text-align: center;
+      }
+
+      .stat-number {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: white;
+        display: block;
+      }
+
+      .stat-label {
+        font-size: 0.9rem;
+        opacity: 0.8;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      /* Features Section */
+      .features-section {
+        padding: 6rem 0;
+        background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+      }
+
+      .section-title {
+        font-family: "Poppins", sans-serif;
+        font-size: 2.5rem;
+        font-weight: 700;
+        text-align: center;
+        margin-bottom: 1rem;
+        background: var(--dark-gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .section-subtitle {
+        text-align: center;
+        font-size: 1.1rem;
+        color: var(--text-light);
+        margin-bottom: 4rem;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .feature-card {
+        background: white;
+        border-radius: 20px;
+        padding: 2.5rem;
+        text-align: center;
+        box-shadow: var(--shadow-light);
+        transition: all 0.3s ease;
+        height: 100%;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+
+      .feature-card:hover {
+        transform: translateY(-10px);
+        box-shadow: var(--shadow-heavy);
+      }
+
+      .feature-icon {
+        width: 80px;
+        height: 80px;
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1.5rem;
+        font-size: 2rem;
+        color: white;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .feature-icon.primary {
+        background: var(--primary-gradient);
+      }
+      .feature-icon.secondary {
+        background: var(--secondary-gradient);
+      }
+      .feature-icon.success {
+        background: var(--success-gradient);
+      }
+      .feature-icon.accent {
+        background: var(--accent-gradient);
+      }
+
+      .feature-title {
+        font-size: 1.3rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        color: var(--text-primary);
+      }
+
+      .feature-description {
+        color: var(--text-light);
+        line-height: 1.6;
+      }
+
+      /* Courses Section */
+      .courses-section {
+        padding: 6rem 0;
+        background: white;
+      }
+
+      /* How It Works Section */
+      .how-section {
+        padding: 6rem 0;
+        background: linear-gradient(135deg, #fff5f7 0%, #e6fffa 100%);
+      }
+      .step-card {
+        background: white;
+        border-radius: 20px;
+        padding: 2rem;
+        box-shadow: var(--shadow-light);
+        height: 100%;
+        transition:
+          transform 0.3s ease,
+          box-shadow 0.3s ease;
+      }
+      .step-card:hover {
+        transform: translateY(-6px);
+        box-shadow: var(--shadow-heavy);
+      }
+      .step-number {
+        width: 44px;
+        height: 44px;
+        border-radius: 12px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--accent-gradient);
+        color: #fff;
+        font-weight: 700;
+        margin-bottom: 1rem;
+      }
+
+      .step-image {
+        text-align: center;
+        margin-bottom: 1.5rem;
+        width: 100%;
+      }
+
+      .step-image img {
+        width: 90% !important;
+        max-width: 350px !important;
+        height: auto !important;
+        object-fit: contain !important;
+        border-radius: 30px !important;
+        display: block !important;
+        margin: 0 auto !important;
+        box-sizing: border-box !important;
+      }
+
+      /* Дополнительные стили для принудительного применения */
+      .step-card .step-image img {
+        width: 90% !important;
+        max-width: 350px !important;
+        height: auto !important;
+        object-fit: contain !important;
+        border-radius: 30px !important;
+        display: block !important;
+        margin: 0 auto !important;
+        box-sizing: border-box !important;
+      }
+
+      /* Специальные стили для первого изображения */
+      .step-image-first {
+        text-align: center;
+        margin-bottom: 1.5rem;
+        width: 100%;
+      }
+
+      .step-image-1 {
+        width: 90% !important;
+        max-width: 350px !important;
+        height: auto !important;
+        object-fit: contain !important;
+        border-radius: 30px !important;
+        display: block !important;
+        margin: 0 auto !important;
+        box-sizing: border-box !important;
+        background-color: rgba(102, 126, 234, 0.1) !important;
+      }
+
+      /* Отладочные стили для проверки применения */
+      .step-image img[src*="1.png"] {
+        background-color: rgba(255, 0, 0, 0.1) !important;
+        width: 90% !important;
+        max-width: 350px !important;
+        height: auto !important;
+        object-fit: contain !important;
+        border-radius: 30px !important;
+        display: block !important;
+        margin: 0 auto !important;
+        box-sizing: border-box !important;
+      }
+
+      /* Reviews Section */
+      .reviews-section {
+        padding: 6rem 0;
+        background: #ffffff;
+      }
+      .review-card {
+        background: #ffffff;
+        border-radius: 20px;
+        padding: 2rem;
+        box-shadow: var(--shadow-light);
+        height: 100%;
+        border: 1px solid rgba(0, 0, 0, 0.03);
+      }
+      .review-author {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-top: 1rem;
+        color: var(--text-secondary);
+        font-size: 0.95rem;
+      }
+
+      .course-card {
+        background: white;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: var(--shadow-light);
+        transition: all 0.3s ease;
+        height: 100%;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+
+      .course-card:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-heavy);
+      }
+
+      .course-image {
+        height: 200px;
+        background: var(--primary-gradient);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 3rem;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .course-image::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="course-pattern" width="10" height="10" patternUnits="userSpaceOnUse"><circle cx="5" cy="5" r="0.5" fill="%23ffffff" opacity="0.2"/></pattern></defs><rect width="100" height="100" fill="url(%23course-pattern)"/></svg>');
+      }
+
+      .course-content {
+        padding: 1.5rem;
+      }
+
+      .course-title {
+        font-size: 1.2rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        color: var(--text-primary);
+      }
+
+      .course-description {
+        color: var(--text-light);
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+      }
+
+      .course-meta {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 0.8rem;
+        color: var(--text-light);
+      }
+
+      /* CTA Section */
+      .cta-section {
+        padding: 6rem 0;
+        background: var(--dark-gradient);
+        color: white;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .cta-section::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: url('https://study-task.kz/static/animations/hero-background.gif');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        opacity: 0.2;
+        z-index: 1;
+        pointer-events: none;
+      }
+
+      @keyframes ctaFloat {
+        0%,
+        100% {
+          transform: scale(1) rotate(0deg);
+        }
+        50% {
+          transform: scale(1.1) rotate(180deg);
+        }
+      }
+
+      .cta-title {
+        font-family: "Poppins", sans-serif;
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        position: relative;
+        z-index: 2;
+      }
+
+      .cta-subtitle {
+        font-size: 1.2rem;
+        margin-bottom: 2rem;
+        opacity: 0.9;
+        position: relative;
+        z-index: 2;
+      }
+
+      /* Footer */
+      .footer {
+        background: #1a202c;
+        color: white;
+        padding: 3rem 0 1rem;
+      }
+
+      .footer-content {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+        margin-bottom: 2rem;
+      }
+
+      .footer-section h5 {
+        font-weight: 600;
+        margin-bottom: 1rem;
+        color: white;
+      }
+
+      .footer-section p,
+      .footer-section a {
+        color: #a0aec0;
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+
+      .footer-section a:hover {
+        color: white;
+      }
+
+      .footer-bottom {
+        border-top: 1px solid #2d3748;
+        padding-top: 1rem;
+        text-align: center;
+        color: #a0aec0;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .hero-title {
+          font-size: 2.5rem;
+        }
+
+        .hero-image-grid {
+          flex-direction: column;
+        }
+
+        .hero-image-grid .image-small {
+          flex: 1 1 100%;
+        }
+
+        .hero-subtitle {
+          font-size: 1.1rem;
+        }
+
+        .hero-stats {
+          flex-direction: column;
+          gap: 1.5rem;
+        }
+
+        .section-title {
+          font-size: 2rem;
+        }
+
+        .feature-card,
+        .course-card {
+          margin-bottom: 2rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .hero-title {
+          font-size: 2rem;
+        }
+
+        .hero-cta {
+          padding: 1rem 2rem;
+          font-size: 1rem;
+        }
+
+        .navbar-brand img {
+          height: 32px;
+        }
+      }
+
+      /* Animation Classes */
+      .fade-in-up {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.6s ease;
+      }
+
+      .fade-in-up.animate {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .fade-in-left {
+        opacity: 0;
+        transform: translateX(-30px);
+        transition: all 0.6s ease;
+      }
+
+      .fade-in-left.animate {
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+      .fade-in-right {
+        opacity: 0;
+        transform: translateX(30px);
+        transition: all 0.6s ease;
+      }
+
+      .fade-in-right.animate {
+        opacity: 1;
+        transform: translateX(0);
+      }
+      .hero-section {
+        padding-top: 100px; /* Добавлено */
+      }
+      @media (max-width: 768px) {
+        .hero-section {
+          padding-top: 120px; /* чуть больше для мобильных */
+        }
+      }
+      .btn-outline-primary:hover {
+        color: black !important;
+        background-color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="#home">
+          <picture>
+            <img
+              src="https://study-task.kz/static/images/Study_Task.png"
+              alt="Study Task"
+              width="259"
+              height="56"
+              loading="eager"
+            />
+          </picture>
+        </a>
+
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarNav"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="#home">Главная</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="#how">Как это работает</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#courses">Бесплатно</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#pricing">Тарифы</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#contact">Контакты</a>
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link btn btn-outline-primary"
+                href="/login" target="_top" style="
+                  margin-left: 1rem;
+                  border-radius: 20px;
+                  padding: 0.5rem 1.5rem;
+                "
+              >
+                <i class="fas fa-sign-in-alt"></i> Войти
+              </a>
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link btn btn-outline-primary"
+                href="https://wa.me/87717515167?text=Здравствуйте, хотелось бы записаться на обучение!"
+                style="
+                  margin-left: 0.5rem;
+                  border-radius: 20px;
+                  padding: 0.5rem 1.5rem;
+                "
+              >
+                <i class="fas fa-rocket"></i> Начать обучение
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Script for async CSS loading support -->
+    <script>
+      // Polyfill for async CSS loading
+      (function () {
+        var links = document.querySelectorAll(
+          'link[rel="preload"][as="style"]',
+        );
+        links.forEach(function (link) {
+          if (link.onload === null) {
+            link.onload = function () {
+              this.rel = "stylesheet";
+            };
+          }
+        });
+      })();
+    </script>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+      <div class="container" style="position: relative; z-index: 10">
+        <div class="row align-items-center">
+          <div class="col-lg-6">
+            <div
+              class="hero-content"
+              data-aos="fade-right"
+              data-aos-duration="1000"
+              style="text-align: center"
+            >
+              <h1
+                class="hero-title"
+                style="font-size: 2.2rem; line-height: 1.15"
+              >
+                <span
+                  style="
+                    background: var(--secondary-gradient);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                  "
+                  >Образовательный</span
+                ><br />
+                <span
+                  style="
+                    background: var(--secondary-gradient);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                  "
+                  >центр</span
+                ><br />
+                <span
+                  style="
+                    background: var(--secondary-gradient);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                  "
+                  >с геймификацией</span
+                ><br />
+                <span
+                  style="
+                    background: var(--secondary-gradient);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                  "
+                  >в обучении</span
+                >
+              </h1>
+              <p class="hero-subtitle">
+                Онлайн уроки с опытными преподавателями, интерактивные квизы и
+                презентации. <strong>Геймификация</strong> — это применение
+                игровых элементов в обучении: звезды, уровни, награды и
+                соревнования делают учебу увлекательной! Зарабатывайте звезды и
+                обменивайте их на призы — от наклеек до планшетов!
+              </p>
+              <a href="https://wa.me/87717515167?text=Здравствуйте, хотелось бы записаться на обучение!" class="hero-cta">
+                <i class="fas fa-rocket"></i>
+                Начать обучение
+              </a>
+            </div>
+            <div>
+              <h1></h1>
+              <h1></h1>
+            </div>
+            <div>
+              <h1></h1>
+              <h1></h1>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="hero-images">
+              <div
+                class="text-center main-image-container"
+                style="position: relative; z-index: 20"
+              >
+                <picture>
+                  <source
+                    type="image/webp"
+                    srcset="https://study-task.kz/static/images/main1-480w.webp 480w, https://study-task.kz/static/images/main1-800w.webp 800w, https://study-task.kz/static/images/main1.webp 1327w"
+                    sizes="(max-width: 768px) 100vw, 1327px"
+                  />
+                  <img
+                    src="https://study-task.kz/static/images/main1.png"
+                    alt="Study Task Platform"
+                    class="main-image"
+                    id="main1"
+                    width="1327"
+                    height="409"
+                    loading="eager"
+                    decoding="async"
+                    style="
+                      max-width: 100%;
+                      height: auto;
+                      border-radius: 20px;
+                      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+                    "
+                  />
+                </picture>
+              </div>
+              <div class="hero-image-grid">
+                <div class="image-small">
+                  <picture>
+                    <source
+                      type="image/webp"
+                      srcset="https://study-task.kz/static/images/main2-480w.webp 480w, https://study-task.kz/static/images/main2-800w.webp 800w, https://study-task.kz/static/images/main2.webp 1327w"
+                      sizes="(max-width: 768px) 100vw, 660px"
+                    />
+                    <img
+                      src="https://study-task.kz/static/images/main2.png"
+                      alt="Study Task Platform"
+                      class="main-image"
+                      id="main2"
+                      width="660"
+                      height="330"
+                      loading="lazy"
+                      decoding="async"
+                      style="
+                        max-width: 100%;
+                        height: auto;
+                        border-radius: 20px;
+                        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+                      "
+                    />
+                  </picture>
+                </div>
+                <div class="image-small">
+                  <picture>
+                    <source
+                      type="image/webp"
+                      srcset="https://study-task.kz/static/images/main3-480w.webp 480w, https://study-task.kz/static/images/main3-800w.webp 800w, https://study-task.kz/static/images/main3.webp 1327w"
+                      sizes="(max-width: 768px) 100vw, 660px"
+                    />
+                    <img
+                      src="https://study-task.kz/static/images/main3.png"
+                      alt="Study Task Platform"
+                      class="main-image"
+                      id="main3"
+                      width="660"
+                      height="330"
+                      loading="lazy"
+                      decoding="async"
+                      style="
+                        max-width: 100%;
+                        height: auto;
+                        border-radius: 20px;
+                        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+                      "
+                    />
+                  </picture>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features-section">
+      <div class="container">
+        <div class="text-center mb-5" data-aos="fade-up">
+          <h2 class="section-title">Почему выбирают Study Task?</h2>
+          <p class="section-subtitle">
+            Современный образовательный центр с геймификацией обучения —
+            превращаем учебу в увлекательную игру с наградами и достижениями
+          </p>
+        </div>
+
+        <div class="row">
+          <div
+            class="col-lg-3 col-md-6 mb-4"
+            data-aos="fade-up"
+            data-aos-delay="100"
+          >
+            <div class="feature-card">
+              <div class="feature-icon primary">
+                <i class="fas fa-chalkboard-teacher"></i>
+              </div>
+              <h4 class="feature-title">Реальные учителя</h4>
+              <p class="feature-description">
+                Опытные преподаватели проводят онлайн уроки в реальном времени.
+                Индивидуальный подход к каждому ученику и персональная
+                поддержка.
+              </p>
+            </div>
+          </div>
+
+          <div
+            class="col-lg-3 col-md-6 mb-4"
+            data-aos="fade-up"
+            data-aos-delay="200"
+          >
+            <div class="feature-card">
+              <div class="feature-icon secondary">
+                <i class="fas fa-question-circle"></i>
+              </div>
+              <h4 class="feature-title">Интерактивные квизы</h4>
+              <p class="feature-description">
+                После каждого урока проходите квизы на нашей платформе для
+                закрепления материала. Мгновенная обратная связь и объяснение
+                ошибок.
+              </p>
+            </div>
+          </div>
+
+          <div
+            class="col-lg-3 col-md-6 mb-4"
+            data-aos="fade-up"
+            data-aos-delay="300"
+          >
+            <div class="feature-card">
+              <div class="feature-icon success">
+                <i class="fas fa-tv"></i>
+              </div>
+              <h4 class="feature-title">Презентации и закрепление</h4>
+              <p class="feature-description">
+                На каждом третьем уроке смотрите презентации по пройденным темам
+                и закрепляйте знания через интерактивные задания.
+              </p>
+            </div>
+          </div>
+
+          <div
+            class="col-lg-3 col-md-6 mb-4"
+            data-aos="fade-up"
+            data-aos-delay="400"
+          >
+            <div class="feature-card">
+              <div class="feature-icon accent">
+                <i class="fas fa-star"></i>
+              </div>
+              <h4 class="feature-title">Система звезд и призов</h4>
+              <p class="feature-description">
+                Зарабатывайте звезды за каждый квиз и пройденный раздел.
+                Обменивайте их на призы — от наклеек до планшетов!
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="how" class="how-section">
+      <div class="container">
+        <div class="text-center mb-5" data-aos="fade-up">
+          <h2 class="section-title">Как проходит обучение</h2>
+          <p class="section-subtitle">
+            Три этапа эффективного обучения с нашими учителями
+          </p>
+        </div>
+        <div class="row">
+          <div
+            class="col-lg-4 col-md-6 mb-4"
+            data-aos="fade-up"
+            data-aos-delay="100"
+          >
+            <div class="step-card h-100">
+              <div class="step-image-first">
+                <picture>
+                  <source
+                    type="image/webp"
+                    srcset="https://study-task.kz/static/images/1-250w.webp 250w, https://study-task.kz/static/images/1-500w.webp 500w, https://study-task.kz/static/images/1.webp 501w"
+                    sizes="(max-width: 768px) 100vw, 501px"
+                  />
+                  <img
+                    src="https://study-task.kz/static/images/1.png"
+                    alt="Шаг 1"
+                    class="step-image-1"
+                    width="501"
+                    height="333"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </picture>
+              </div>
+              <h5 class="feature-title">Онлайн урок с учителем</h5>
+              <p class="feature-description">
+                Присоединяйтесь к онлайн уроку с опытным преподавателем.
+                Интерактивное обучение в реальном времени с возможностью
+                задавать вопросы.
+              </p>
+            </div>
+          </div>
+          <div
+            class="col-lg-4 col-md-6 mb-4"
+            data-aos="fade-up"
+            data-aos-delay="200"
+          >
+            <div class="step-card h-100">
+              <div class="step-image">
+                <picture>
+                  <source
+                    type="image/webp"
+                    srcset="https://study-task.kz/static/images/2-250w.webp 250w, https://study-task.kz/static/images/2-500w.webp 500w, https://study-task.kz/static/images/2.webp 501w"
+                    sizes="(max-width: 768px) 100vw, 501px"
+                  />
+                  <img
+                    src="https://study-task.kz/static/images/2.png"
+                    alt="Шаг 2"
+                    width="501"
+                    height="330"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </picture>
+              </div>
+              <h5 class="feature-title">Квиз и закрепление</h5>
+              <p class="feature-description">
+                После урока проходите квиз на платформе. На каждом третьем уроке
+                смотрите презентацию и закрепляйте пройденные темы.
+              </p>
+            </div>
+          </div>
+          <div
+            class="col-lg-4 col-md-12 mb-4"
+            data-aos="fade-up"
+            data-aos-delay="300"
+          >
+            <div class="step-card h-100">
+              <div class="step-image">
+                <picture>
+                  <source
+                    type="image/webp"
+                    srcset="https://study-task.kz/static/images/3-250w.webp 250w, https://study-task.kz/static/images/3-500w.webp 500w, https://study-task.kz/static/images/3.webp 501w"
+                    sizes="(max-width: 768px) 100vw, 501px"
+                  />
+                  <img
+                    src="https://study-task.kz/static/images/3.png"
+                    alt="Шаг 3"
+                    width="501"
+                    height="331"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </picture>
+              </div>
+              <h5 class="feature-title">Звезды и награды</h5>
+              <p class="feature-description">
+                Получайте звезды за каждый квиз и пройденный раздел. Накопите
+                достаточно звезд и обменяйте их на призы!
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Free Trial Section -->
+    <section id="courses" class="courses-section">
+      <div class="container">
+        <div class="text-center mb-5" data-aos="fade-up">
+          <h2 class="section-title">Начните обучение бесплатно</h2>
+          <p class="section-subtitle">
+            При регистрации каждый ученик получает щедрый бонус для знакомства с
+            нашими учителями
+          </p>
+        </div>
+
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <div
+              class="feature-card text-center"
+              data-aos="fade-up"
+              data-aos-delay="100"
+            >
+              <div class="feature-icon primary" style="margin-bottom: 2rem">
+                <i class="fas fa-gift"></i>
+              </div>
+              <h4
+                class="feature-title"
+                style="font-size: 1.8rem; margin-bottom: 1.5rem"
+              >
+                Бесплатный стартовый пакет
+              </h4>
+              <div class="row">
+                <div class="col-md-6 mb-4">
+                  <div class="text-center">
+                    <i
+                      class="fas fa-chalkboard-teacher"
+                      style="
+                        font-size: 3rem;
+                        color: #667eea;
+                        margin-bottom: 1rem;
+                      "
+                    ></i>
+                    <h5 style="color: var(--text-primary); margin-bottom: 1rem">
+                      2 бесплатных урока
+                    </h5>
+                    <p style="color: var(--text-light)">
+                      Индивидуальные занятия с опытными учителями по любому
+                      предмету
+                    </p>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                  <div class="text-center">
+                    <i
+                      class="fas fa-book-open"
+                      style="
+                        font-size: 3rem;
+                        color: #667eea;
+                        margin-bottom: 1rem;
+                      "
+                    ></i>
+                    <h5 style="color: var(--text-primary); margin-bottom: 1rem">
+                      Диагностика
+                    </h5>
+                    <p style="color: var(--text-light)">
+                      выявление пробелов, сильных сторон, уязвимых мест и не только
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <a
+                href="#"
+                class="hero-cta"
+                style="margin-top: 2rem"
+              >
+                <i class="fas fa-rocket"></i>
+                Получить бесплатный пакет
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="features-section">
+      <div class="container">
+        <div class="text-center mb-5" data-aos="fade-up">
+          <h2 class="section-title">Тарифы обучения</h2>
+          <p class="section-subtitle">
+            Выберите удобный для вас формат занятий с нашими учителями
+          </p>
+        </div>
+
+        <div class="row justify-content-center">
+          <div
+            class="col-lg-4 col-md-6 mb-4"
+            data-aos="fade-up"
+            data-aos-delay="100"
+          >
+            <div
+              class="feature-card text-center"
+              style="position: relative; overflow: hidden"
+            >
+              <div
+                style="
+                  position: absolute;
+                  top: 10px;
+                  right: 10px;
+                  background: var(--secondary-gradient);
+                  color: white;
+                  padding: 5px 15px;
+                  border-radius: 20px;
+                  font-size: 0.8rem;
+                  font-weight: 600;
+                "
+              >
+                Популярно
+              </div>
+              <div class="feature-icon primary">
+                <i class="fas fa-user"></i>
+              </div>
+              <h4 class="feature-title">Индивидуальные занятия</h4>
+              <div style="margin: 1.5rem 0">
+                <span
+                  style="
+                    font-size: 2.5rem;
+                    font-weight: 700;
+                    color: var(--text-primary);
+                  "
+                  >5 000</span
+                >
+                <span style="font-size: 1.2rem; color: var(--text-light)">
+                  ₸/час</span
+                >
+              </div>
+              <div style="margin-bottom: 1.5rem">
+                <span
+                  style="
+                    text-decoration: line-through;
+                    color: var(--text-light);
+                    font-size: 1.1rem;
+                  "
+                  >7 000 ₸/час</span
+                >
+              </div>
+              <p class="feature-description">
+                Персональное внимание учителя, индивидуальная программа
+                обучения, гибкий график занятий
+              </p>
+              <a
+                href="https://wa.me/77754765263?text=Здравствуйте! Хочу записаться на индивидуальные занятия за 5000 ₸/час"
+                class="hero-cta"
+                style="
+                  margin-top: 1.5rem;
+                  padding: 0.8rem 2rem;
+                  font-size: 1rem;
+                "
+                target="_blank"
+              >
+                <i class="fab fa-whatsapp"></i>
+                Выбрать
+              </a>
+            </div>
+          </div>
+
+          <div
+            class="col-lg-4 col-md-6 mb-4"
+            data-aos="fade-up"
+            data-aos-delay="200"
+          >
+            <div class="feature-card text-center coming-soon">
+              <div class="feature-icon secondary">
+                <i
+                  class="fas fa-user"
+                  style="
+                    position: absolute;
+                    left: 25%;
+                    top: 50%;
+                    transform: translate(-50%, -50%);
+                    font-size: 1.2rem;
+                  "
+                ></i>
+                <i
+                  class="fas fa-user"
+                  style="
+                    position: absolute;
+                    right: 25%;
+                    top: 50%;
+                    transform: translate(50%, -50%);
+                    font-size: 1.2rem;
+                  "
+                ></i>
+              </div>
+              <h4 class="feature-title">Занятия в паре</h4>
+              <div style="margin: 1.5rem 0">
+                <span
+                  style="
+                    font-size: 2.5rem;
+                    font-weight: 700;
+                    color: var(--text-primary);
+                  "
+                  >4 000</span
+                >
+                <span style="font-size: 1.2rem; color: var(--text-light)">
+                  ₸/час</span
+                >
+              </div>
+              <div style="margin-bottom: 1.5rem">
+                <span
+                  style="
+                    text-decoration: line-through;
+                    color: var(--text-light);
+                    font-size: 1.1rem;
+                  "
+                  >6 000 ₸/час</span
+                >
+              </div>
+              <p class="feature-description">
+                Обучение в паре с другом или одноклассником. Экономия средств
+                при сохранении качества обучения
+              </p>
+              <a
+                href="https://wa.me/77754765263?text=Здравствуйте! Хочу записаться на занятия в паре за 4000 ₸/час"
+                class="hero-cta"
+                style="
+                  margin-top: 1.5rem;
+                  padding: 0.8rem 2rem;
+                  font-size: 1rem;
+                "
+                target="_blank"
+              >
+                <i class="fab fa-whatsapp"></i>
+                Выбрать
+              </a>
+
+              <!-- Coming Soon Overlay -->
+              <div class="coming-soon-overlay">
+                <div class="coming-soon-badge">
+                  <i class="fas fa-clock"></i> Скоро
+                </div>
+                <div class="coming-soon-text">Скоро будет доступно</div>
+                <div class="coming-soon-subtext">
+                  Мы работаем над запуском занятий в паре
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="col-lg-4 col-md-6 mb-4"
+            data-aos="fade-up"
+            data-aos-delay="300"
+          >
+            <div class="feature-card text-center coming-soon">
+              <div class="feature-icon success">
+                <i class="fas fa-users-cog"></i>
+              </div>
+              <h4 class="feature-title">Групповые занятия</h4>
+              <div style="margin: 1.5rem 0">
+                <span
+                  style="
+                    font-size: 2.5rem;
+                    font-weight: 700;
+                    color: var(--text-primary);
+                  "
+                  >3 000</span
+                >
+                <span style="font-size: 1.2rem; color: var(--text-light)">
+                  ₸/час</span
+                >
+              </div>
+              <div style="margin-bottom: 1.5rem">
+                <span
+                  style="
+                    text-decoration: line-through;
+                    color: var(--text-light);
+                    font-size: 1.1rem;
+                  "
+                  >5 000 ₸/час</span
+                >
+              </div>
+              <p class="feature-description">
+                Группа 3-5 человек. Командная работа, обмен опытом, максимальная
+                экономия при высоком качестве
+              </p>
+              <a
+                href="https://wa.me/77754765263?text=Здравствуйте! Хочу записаться на групповые занятия за 3000 ₸/час"
+                class="hero-cta"
+                style="
+                  margin-top: 1.5rem;
+                  padding: 0.8rem 2rem;
+                  font-size: 1rem;
+                "
+                target="_blank"
+              >
+                <i class="fab fa-whatsapp"></i>
+                Выбрать
+              </a>
+
+              <!-- Coming Soon Overlay -->
+              <div class="coming-soon-overlay">
+                <div class="coming-soon-badge">
+                  <i class="fas fa-clock"></i> Скоро
+                </div>
+                <div class="coming-soon-text">Скоро будет доступно</div>
+                <div class="coming-soon-subtext">
+                  Мы работаем над запуском групповых занятий
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+      <div class="container" style="position: relative; z-index: 2">
+        <div class="row justify-content-center">
+          <div class="col-lg-8 text-center" data-aos="fade-up">
+            <h2 class="cta-title">Готовы к первому уроку?</h2>
+            <p class="cta-subtitle">
+              Запишитесь на пробный онлайн урок с нашими учителями и получите
+              первые звезды!
+            </p>
+            <a href="https://wa.me/87717515167?text=Здравствуйте, хотелось бы записаться на обучение!" class="hero-cta">
+              <i class="fas fa-rocket"></i>
+              Начать обучение
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <h5>Study Task</h5>
+            <p>
+              Современный образовательный центр с геймификацией обучения. Онлайн
+              уроки, интерактивные квизы и система мотивации для эффективного
+              обучения.
+            </p>
+          </div>
+
+          <div class="footer-section">
+            <h5>Быстрые ссылки</h5>
+            <p><a href="#features">Возможности</a></p>
+            <p><a href="#how">Как это работает</a></p>
+            <p><a href="#courses">Бесплатно</a></p>
+            <p><a href="#pricing">Тарифы</a></p>
+            <p><a href="#">Войти</a></p>
+          </div>
+
+          <div class="footer-section">
+            <h5>Поддержка</h5>
+            <p><a href="#">Помощь</a></p>
+            <p><a href="#">FAQ</a></p>
+            <p><a href="#">Контакты</a></p>
+            <p><a href="#">Обратная связь</a></p>
+          </div>
+
+          <div class="footer-section">
+            <h5>Контакты</h5>
+            <p><i class="fas fa-envelope"></i> study.task.kz@gmail.com</p>
+            <p><i class="fas fa-phone"></i> +7 (771) 751 51 67</p>
+            <p><i class="fas fa-map-marker-alt"></i> Алматы, Казахстан</p>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p>&copy; 2026 Study Task. Все права защищены.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <script>
+      // Initialize AOS
+      AOS.init({
+        duration: 800,
+        easing: "ease-in-out",
+        once: true,
+        mirror: false,
+      });
+
+      // Navbar scroll effect
+      $(window).scroll(function () {
+        if ($(window).scrollTop() > 50) {
+          $(".navbar").addClass("scrolled");
+        } else {
+          $(".navbar").removeClass("scrolled");
+        }
+      });
+
+      // Smooth scrolling for anchor links with fixed navbar offset
+      $('a[href^="#"]').on("click", function (event) {
+        var target = $(this.getAttribute("href"));
+        if (target.length) {
+          event.preventDefault();
+          var navHeight = $(".navbar").outerHeight() || 80;
+          $("html, body")
+            .stop()
+            .animate(
+              {
+                scrollTop: target.offset().top - navHeight,
+              },
+              600,
+            );
+          // Close mobile navbar after navigation
+          $(".navbar-collapse").collapse("hide");
+        }
+      });
+
+      // Counter animation
+      function animateCounters() {
+        $(".stat-number").each(function () {
+          const $this = $(this);
+          const countTo = parseInt($this.text().replace(/[^0-9]/g, ""));
+
+          $({ countNum: 0 }).animate(
+            {
+              countNum: countTo,
+            },
+            {
+              duration: 2000,
+              easing: "linear",
+              step: function () {
+                $this.text(Math.floor(this.countNum) + "+");
+              },
+              complete: function () {
+                $this.text(countTo + "+");
+              },
+            },
+          );
+        });
+      }
+
+      // Trigger counter animation when hero section is in view
+      const heroSection = document.querySelector(".hero-section");
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            animateCounters();
+            observer.unobserve(entry.target);
+          }
+        });
+      });
+
+      observer.observe(heroSection);
+
+      // Add loading animation
+      $(window).on("load", function () {
+        $("body").addClass("loaded");
+      });
+
+      // Main images animation with 3-second intervals
+      function animateMainImages() {
+        const images = ["main1", "main2", "main3"];
+        let currentIndex = 0;
+
+        function showNextImage() {
+          if (currentIndex < images.length) {
+            const imageElement = document.getElementById(images[currentIndex]);
+
+            if (imageElement) {
+              imageElement.classList.add("show");
+              imageElement.style.opacity = "1";
+              imageElement.style.transform = "translateY(0)";
+              currentIndex++;
+
+              // Schedule next image after 3 seconds
+              if (currentIndex < images.length) {
+                setTimeout(showNextImage, 3000);
+              }
+            }
+          }
+        }
+
+        // Start animation after page load
+        setTimeout(showNextImage, 1000);
+      }
+
+      // Initialize main images animation when DOM is ready
+      $(document).ready(function () {
+        animateMainImages();
+      });
+
+      // Also try on window load as backup
+      $(window).on("load", function () {
+        // Check if images are still hidden and animate them
+        const images = ["main1", "main2", "main3"];
+        images.forEach((id, index) => {
+          const img = document.getElementById(id);
+          if (img && !img.classList.contains("show")) {
+            // Force animation if still hidden
+            setTimeout(
+              () => {
+                if (img && !img.classList.contains("show")) {
+                  img.classList.add("show");
+                  img.style.opacity = "1";
+                  img.style.transform = "translateY(0)";
+                }
+              },
+              (index + 1) * 3000,
+            );
+          }
+        });
+      });
+
+      // Alternative animation method using jQuery
+      function animateImagesWithJQuery() {
+        const images = ["#main1", "#main2", "#main3"];
+        let currentIndex = 0;
+
+        function showNextImage() {
+          if (currentIndex < images.length) {
+            const $image = $(images[currentIndex]);
+            if ($image.length) {
+              $image.addClass("show").css({
+                opacity: "1",
+                transform: "translateY(0)",
+              });
+              currentIndex++;
+
+              if (currentIndex < images.length) {
+                setTimeout(showNextImage, 3000);
+              }
+            }
+          }
+        }
+
+        setTimeout(showNextImage, 1000);
+      }
+
+      // Try jQuery method as well
+      $(document).ready(function () {
+        setTimeout(animateImagesWithJQuery, 2000);
+      });
+    </script>
+
+  </body>
+</html>
+
+
