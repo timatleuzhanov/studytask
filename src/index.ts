@@ -2,6 +2,8 @@ import express from "express";
 import cors from "cors";
 import helmet from "helmet";
 import { createServer } from "http";
+import path from "node:path";
+import fs from "node:fs";
 import { config } from "./config.js";
 import { authRouter } from "./routes/auth.js";
 import { teachersRouter } from "./routes/teachers.js";
@@ -39,6 +41,15 @@ app.use("/api/ratings", ratingsRouter);
 app.use("/api/chat", chatRouter);
 app.use("/api/stai", staiRouter);
 app.use("/api/admin", adminRouter);
+
+const clientDist = path.resolve(process.cwd(), "client", "dist");
+const indexHtml = path.join(clientDist, "index.html");
+if (fs.existsSync(indexHtml)) {
+  app.use(express.static(clientDist));
+  app.get(/^\/(?!api).*/, (_req, res) => {
+    res.sendFile(indexHtml);
+  });
+}
 
 const server = createServer(app);
 
